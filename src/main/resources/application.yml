@@ -1,0 +1,21 @@
+spring:
+  security:
+    enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/biblio?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: ''
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  thymeleaf:
+    cache: false
+    encoding: UTF-8     # Ajoutez ceci pour forcer l'encodage UTF-8
+
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
