@@ -9,10 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.bibliotheque.services.DocumentService;
-import com.example.bibliotheque.services.LivreService;
-import com.example.bibliotheque.models.Document;
-import com.example.bibliotheque.models.Livre;
+import com.example.bibliotheque.services.*;
+import com.example.bibliotheque.models.*;
+
 
 @Controller
 public class DocumentController {
@@ -21,9 +20,15 @@ public class DocumentController {
 
     @Autowired
     private DocumentService documentService;
-
     @Autowired
     private LivreService livreService;
+    @Autowired
+    private JournalService journalService;
+    @Autowired
+    private MagazineService magazineService;
+    @Autowired
+    private OuvrageMultimediaService ouvrageMultimediaService;
+
 
     @GetMapping("/documents/{id}")
     public String getDocumentDetails(@PathVariable int id, Model model) {
@@ -39,20 +44,57 @@ public class DocumentController {
             model.addAttribute("document", document);
             logger.debug("Document ajouté au modèle : {}", document);
 
-            // Vérifier si le document est un livre
-            if ("Livre".equals(document.getTypeDocument())) {
-                logger.debug("Le document est un livre. Récupération des informations spécifiques au livre...");
-                // Récupérer les informations spécifiques au livre
-                Livre livre = livreService.getLivreById(id);
-                if (livre != null) {
-                    model.addAttribute("livre", livre);
-                    logger.debug("Livre ajouté au modèle : {}", livre);
-                } else {
-                    logger.debug("Aucun livre trouvé pour l'ID : {}", id);
-                }
+        // Vérifier si le document est un livre
+        if ("Livre".equals(document.getTypeDocument())) {
+            logger.debug("Le document est un livre. Récupération des informations spécifiques au livre...");
+            // Récupérer les informations spécifiques au livre
+            Livre livre = livreService.getLivreById(id);
+            if (livre != null) {
+                model.addAttribute("livre", livre);
+                logger.debug("Livre ajouté au modèle : {}", livre);
             } else {
-                logger.debug("Le document n'est pas un livre. Type : {}", document.getTypeDocument());
+                logger.debug("Aucun livre trouvé pour l'ID : {}", id);
             }
+        }
+        // Vérifier si le document est un journal
+        else if ("Journal".equals(document.getTypeDocument())) {
+            logger.debug("Le document est un journal. Récupération des informations spécifiques au journal...");
+            // Récupérer les informations spécifiques au journal
+            Journal journal = journalService.getJournalById(id);
+            if (journal != null) {
+                model.addAttribute("journal", journal);
+                logger.debug("Journal ajouté au modèle : {}", journal);
+            } else {
+                logger.debug("Aucun journal trouvé pour l'ID : {}", id);
+            }
+        }
+        // Vérifier si le document est un magazine
+        else if ("Magazine".equals(document.getTypeDocument())) {
+            logger.debug("Le document est un magazine. Récupération des informations spécifiques au magazine...");
+            // Récupérer les informations spécifiques au magazine
+            Magazine magazine = magazineService.getMagazineById(id);
+            if (magazine != null) {
+                model.addAttribute("magazine", magazine);
+                logger.debug("Magazine ajouté au modèle : {}", magazine);
+            } else {
+                logger.debug("Aucun magazine trouvé pour l'ID : {}", id);
+            }
+        }
+        // Vérifier si le document est un ouvrage multimédia
+        else if ("OuvrageMultimedia".equals(document.getTypeDocument())) {
+            logger.debug("Le document est un ouvrage multimédia. Récupération des informations spécifiques à l'ouvrage multimédia...");
+            // Récupérer les informations spécifiques à l'ouvrage multimédia
+            OuvrageMultimedia ouvrageMultimedia = ouvrageMultimediaService.getOuvrageMultimediaById(id);
+            if (ouvrageMultimedia != null) {
+                model.addAttribute("ouvrageMultimedia", ouvrageMultimedia);
+                logger.debug("Ouvrage multimédia ajouté au modèle : {}", ouvrageMultimedia);
+            } else {
+                logger.debug("Aucun ouvrage multimédia trouvé pour l'ID : {}", id);
+            }
+        } else {
+            logger.debug("Type de document inconnu : {}", document.getTypeDocument());
+        }
+
 
             logger.debug("Redirection vers la vue document-details");
             return "document-details"; // Nom de la vue Thymeleaf
@@ -63,3 +105,4 @@ public class DocumentController {
         }
     }
 }
+

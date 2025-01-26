@@ -49,6 +49,23 @@
                         <p><strong>Nombre de pages :</strong> <span th:text="${livre.nombrePages}"></span></p>
                     </div>
 
+                    <!-- Informations spécifiques au journal -->
+                    <div th:if="${journal != null}">
+                        <p><strong>Périodicité :</strong> <span th:text="${journal.periodicite}"></span></p>
+                    </div>
+
+                    <!-- Informations spécifiques au Magazine -->
+                    <div th:if="${magazine != null}">
+                        <p><strong>Fréquence :</strong> <span th:text="${magazine.frequence}"></span></p>
+                        <p><strong>Numéro de Parution :</strong> <span th:text="${magazine.numParution}"></span></p>
+                    </div>
+
+                    <!-- Informations spécifiques au Ouvrage Multimédia -->
+                    <div th:if="${ouvrageMultimedia != null}">
+                        <p><strong>Type Ouvrage :</strong> <span th:text="${ouvrageMultimedia.typeOuvrage}"></span></p>
+                        <p><strong>Durée :</strong> <span th:text="${ouvrageMultimedia.duree}"> </span> minutes</p>
+                    </div>
+
                     <a href="/" class="btn btn-primary">Retour à l'accueil</a>
                 </div>
             </div>

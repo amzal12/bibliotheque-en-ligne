@@ -38,7 +38,7 @@ public class OuvrageMultimediaRepository {
     // Méthode pour récupérer tous les ouvrages multimédias
     public List<OuvrageMultimedia> findAll() {
         String sql = "SELECT d.idDocument, d.titre, d.editeur, d.qteTotale, d.qteDisponible, d.datePublication, d.imageUrl, o.typeOuvrage, o.duree " +
-                     "FROM Document d " +
+                     "FROM documents d " +
                      "JOIN OuvrageMultimedia o ON d.idDocument = o.idDocument " +
                      "WHERE d.typeDocument = 'OuvrageMultimedia'";
         return jdbcTemplate.query(sql, new OuvrageMultimediaRowMapper());
@@ -47,7 +47,7 @@ public class OuvrageMultimediaRepository {
     // Méthode pour insérer un ouvrage multimédia
     public void save(OuvrageMultimedia ouvrageMultimedia) {
         // Insérer dans la table Document
-        String sqlDocument = "INSERT INTO Document (idDocument, titre, editeur, qteTotale, qteDisponible, datePublication, typeDocument, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlDocument = "INSERT INTO documents (idDocument, titre, editeur, qteTotale, qteDisponible, datePublication, typeDocument, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sqlDocument, ouvrageMultimedia.getIdDocument(), ouvrageMultimedia.getTitre(), ouvrageMultimedia.getEditeur(), ouvrageMultimedia.getQteTotale(), ouvrageMultimedia.getQteDisponible(), ouvrageMultimedia.getDatePublication(), ouvrageMultimedia.getTypeDocument(), ouvrageMultimedia.getImageUrl());
 
         // Insérer dans la table OuvrageMultimedia
@@ -58,7 +58,7 @@ public class OuvrageMultimediaRepository {
     // Méthode pour mettre à jour un ouvrage multimédia
     public void update(OuvrageMultimedia ouvrageMultimedia) {
         // Mettre à jour la table Document
-        String sqlDocument = "UPDATE Document SET titre = ?, editeur = ?, qteTotale = ?, qteDisponible = ?, datePublication = ?, imageUrl = ? WHERE idDocument = ?";
+        String sqlDocument = "UPDATE documents SET titre = ?, editeur = ?, qteTotale = ?, qteDisponible = ?, datePublication = ?, imageUrl = ? WHERE idDocument = ?";
         jdbcTemplate.update(sqlDocument, ouvrageMultimedia.getTitre(), ouvrageMultimedia.getEditeur(), ouvrageMultimedia.getQteTotale(), ouvrageMultimedia.getQteDisponible(), ouvrageMultimedia.getDatePublication(), ouvrageMultimedia.getImageUrl(), ouvrageMultimedia.getIdDocument());
 
         // Mettre à jour la table OuvrageMultimedia
@@ -73,14 +73,14 @@ public class OuvrageMultimediaRepository {
         jdbcTemplate.update(sqlOuvrageMultimedia, idDocument);
 
         // Supprimer de la table Document
-        String sqlDocument = "DELETE FROM Document WHERE idDocument = ?";
+        String sqlDocument = "DELETE FROM documents WHERE idDocument = ?";
         jdbcTemplate.update(sqlDocument, idDocument);
     }
 
     // Méthode pour trouver un ouvrage multimédia par son ID
     public OuvrageMultimedia findById(int idDocument) {
         String sql = "SELECT d.idDocument, d.titre, d.editeur, d.qteTotale, d.qteDisponible, d.datePublication, d.imageUrl, o.typeOuvrage, o.duree " +
-                     "FROM Document d " +
+                     "FROM documents d " +
                      "JOIN OuvrageMultimedia o ON d.idDocument = o.idDocument " +
                      "WHERE d.idDocument = ? AND d.typeDocument = 'OuvrageMultimedia'";
         return jdbcTemplate.queryForObject(sql, new OuvrageMultimediaRowMapper(), idDocument);

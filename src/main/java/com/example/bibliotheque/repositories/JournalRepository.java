@@ -37,7 +37,7 @@ public class JournalRepository {
     // Méthode pour récupérer tous les journaux
     public List<Journal> findAll() {
         String sql = "SELECT d.idDocument, d.titre, d.editeur, d.qteTotale, d.qteDisponible, d.datePublication, d.imageUrl, j.periodicite " +
-                     "FROM Document d " +
+                     "FROM documents d " +
                      "JOIN Journal j ON d.idDocument = j.idDocument " +
                      "WHERE d.typeDocument = 'Journal'";
         return jdbcTemplate.query(sql, new JournalRowMapper());
@@ -46,7 +46,7 @@ public class JournalRepository {
     // Méthode pour insérer un journal
     public void save(Journal journal) {
         // Insérer dans la table Document
-        String sqlDocument = "INSERT INTO Document (idDocument, titre, editeur, qteTotale, qteDisponible, datePublication, typeDocument, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlDocument = "INSERT INTO documents (idDocument, titre, editeur, qteTotale, qteDisponible, datePublication, typeDocument, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sqlDocument, journal.getIdDocument(), journal.getTitre(), journal.getEditeur(), journal.getQteTotale(), journal.getQteDisponible(), journal.getDatePublication(), journal.getTypeDocument(), journal.getImageUrl());
 
         // Insérer dans la table Journal
@@ -57,7 +57,7 @@ public class JournalRepository {
     // Méthode pour mettre à jour un journal
     public void update(Journal journal) {
         // Mettre à jour la table Document
-        String sqlDocument = "UPDATE Document SET titre = ?, editeur = ?, qteTotale = ?, qteDisponible = ?, datePublication = ?, imageUrl = ? WHERE idDocument = ?";
+        String sqlDocument = "UPDATE documents SET titre = ?, editeur = ?, qteTotale = ?, qteDisponible = ?, datePublication = ?, imageUrl = ? WHERE idDocument = ?";
         jdbcTemplate.update(sqlDocument, journal.getTitre(), journal.getEditeur(), journal.getQteTotale(), journal.getQteDisponible(), journal.getDatePublication(), journal.getImageUrl(), journal.getIdDocument());
 
         // Mettre à jour la table Journal
@@ -72,14 +72,14 @@ public class JournalRepository {
         jdbcTemplate.update(sqlJournal, idDocument);
 
         // Supprimer de la table Document
-        String sqlDocument = "DELETE FROM Document WHERE idDocument = ?";
+        String sqlDocument = "DELETE FROM documents WHERE idDocument = ?";
         jdbcTemplate.update(sqlDocument, idDocument);
     }
 
     // Méthode pour trouver un journal par son ID
     public Journal findById(int idDocument) {
         String sql = "SELECT d.idDocument, d.titre, d.editeur, d.qteTotale, d.qteDisponible, d.datePublication, d.imageUrl, j.periodicite " +
-                     "FROM Document d " +
+                     "FROM documents d " +
                      "JOIN Journal j ON d.idDocument = j.idDocument " +
                      "WHERE d.idDocument = ? AND d.typeDocument = 'Journal'";
         return jdbcTemplate.queryForObject(sql, new JournalRowMapper(), idDocument);

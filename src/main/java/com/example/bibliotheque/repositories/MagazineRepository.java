@@ -38,7 +38,7 @@ public class MagazineRepository {
     // Méthode pour récupérer tous les magazines
     public List<Magazine> findAll() {
         String sql = "SELECT d.idDocument, d.titre, d.editeur, d.qteTotale, d.qteDisponible, d.datePublication, d.imageUrl, m.frequence, m.numParution " +
-                     "FROM Document d " +
+                     "FROM documents d " +
                      "JOIN Magazine m ON d.idDocument = m.idDocument " +
                      "WHERE d.typeDocument = 'Magazine'";
         return jdbcTemplate.query(sql, new MagazineRowMapper());
@@ -47,7 +47,7 @@ public class MagazineRepository {
     // Méthode pour insérer un magazine
     public void save(Magazine magazine) {
         // Insérer dans la table Document
-        String sqlDocument = "INSERT INTO Document (idDocument, titre, editeur, qteTotale, qteDisponible, datePublication, typeDocument, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlDocument = "INSERT INTO documents (idDocument, titre, editeur, qteTotale, qteDisponible, datePublication, typeDocument, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sqlDocument, magazine.getIdDocument(), magazine.getTitre(), magazine.getEditeur(), magazine.getQteTotale(), magazine.getQteDisponible(), magazine.getDatePublication(), magazine.getTypeDocument(), magazine.getImageUrl());
 
         // Insérer dans la table Magazine
@@ -58,7 +58,7 @@ public class MagazineRepository {
     // Méthode pour mettre à jour un magazine
     public void update(Magazine magazine) {
         // Mettre à jour la table Document
-        String sqlDocument = "UPDATE Document SET titre = ?, editeur = ?, qteTotale = ?, qteDisponible = ?, datePublication = ?, imageUrl = ? WHERE idDocument = ?";
+        String sqlDocument = "UPDATE documents SET titre = ?, editeur = ?, qteTotale = ?, qteDisponible = ?, datePublication = ?, imageUrl = ? WHERE idDocument = ?";
         jdbcTemplate.update(sqlDocument, magazine.getTitre(), magazine.getEditeur(), magazine.getQteTotale(), magazine.getQteDisponible(), magazine.getDatePublication(), magazine.getImageUrl(), magazine.getIdDocument());
 
         // Mettre à jour la table Magazine
@@ -73,16 +73,17 @@ public class MagazineRepository {
         jdbcTemplate.update(sqlMagazine, idDocument);
 
         // Supprimer de la table Document
-        String sqlDocument = "DELETE FROM Document WHERE idDocument = ?";
+        String sqlDocument = "DELETE FROM documents WHERE idDocument = ?";
         jdbcTemplate.update(sqlDocument, idDocument);
     }
 
     // Méthode pour trouver un magazine par son ID
     public Magazine findById(int idDocument) {
         String sql = "SELECT d.idDocument, d.titre, d.editeur, d.qteTotale, d.qteDisponible, d.datePublication, d.imageUrl, m.frequence, m.numParution " +
-                     "FROM Document d " +
+                     "FROM documents d " +
                      "JOIN Magazine m ON d.idDocument = m.idDocument " +
                      "WHERE d.idDocument = ? AND d.typeDocument = 'Magazine'";
         return jdbcTemplate.queryForObject(sql, new MagazineRowMapper(), idDocument);
     }
 }
+
