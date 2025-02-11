@@ -108,3 +108,4 @@ CREATE TABLE Ecrire (
     FOREIGN KEY (idAuteur) REFERENCES Auteur(idPersonne),
     FOREIGN KEY (idDocument) REFERENCES Document(idDocument)
 );
+

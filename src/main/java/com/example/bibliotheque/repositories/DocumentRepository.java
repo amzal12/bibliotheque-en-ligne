@@ -17,8 +17,8 @@ public class DocumentRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    // RowMapper pour mapper les résultats de la base de données à un objet Document
-    private static final class DocumentRowMapper implements RowMapper<Document> {
+    // Passage de 'private' à 'public' et ajout de 'static' pour pouvoir instancier ce RowMapper depuis d'autres classes.
+    public static final class DocumentRowMapper implements RowMapper<Document> {
         @Override
         public Document mapRow(ResultSet rs, int rowNum) throws SQLException {
             Document document = new Document();
@@ -42,14 +42,32 @@ public class DocumentRepository {
 
     // Méthode pour insérer un document
     public void save(Document document) {
-        String sql = "INSERT INTO documents (idDocument, titre, editeur, qteTotale, qteDisponible, datePublication, typeDocument, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, document.getIdDocument(), document.getTitre(), document.getEditeur(), document.getQteTotale(), document.getQteDisponible(), document.getDatePublication(), document.getTypeDocument(), document.getImageUrl());
+        String sql = "INSERT INTO documents (idDocument, titre, editeur, qteTotale, qteDisponible, datePublication, typeDocument, imageUrl) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql,
+                document.getIdDocument(),
+                document.getTitre(),
+                document.getEditeur(),
+                document.getQteTotale(),
+                document.getQteDisponible(),
+                document.getDatePublication(),
+                document.getTypeDocument(),
+                document.getImageUrl());
     }
 
     // Méthode pour mettre à jour un document
     public void update(Document document) {
-        String sql = "UPDATE documents SET titre = ?, editeur = ?, qteTotale = ?, qteDisponible = ?, datePublication = ?, typeDocument = ?, imageUrl = ? WHERE idDocument = ?";
-        jdbcTemplate.update(sql, document.getTitre(), document.getEditeur(), document.getQteTotale(), document.getQteDisponible(), document.getDatePublication(), document.getTypeDocument(), document.getImageUrl(), document.getIdDocument());
+        String sql = "UPDATE documents SET titre = ?, editeur = ?, qteTotale = ?, qteDisponible = ?, datePublication = ?, typeDocument = ?, imageUrl = ? " +
+                     "WHERE idDocument = ?";
+        jdbcTemplate.update(sql,
+                document.getTitre(),
+                document.getEditeur(),
+                document.getQteTotale(),
+                document.getQteDisponible(),
+                document.getDatePublication(),
+                document.getTypeDocument(),
+                document.getImageUrl(),
+                document.getIdDocument());
     }
 
     // Méthode pour supprimer un document
