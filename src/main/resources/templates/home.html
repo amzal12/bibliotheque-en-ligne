@@ -38,8 +38,8 @@
                                 <span sec:authentication="name"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="/mon-profil">Mon profil</a></li>
-                                <li class="nav-item"><a href="/cart" class="nav-link">Mon Panier</a></li>
+                                <li sec:authorize="isAuthenticated() and hasRole('Gestionnaire')"><a class="dropdown-item" href="/admin/panel">Panel Admin</a></li>
+                                <li class="dropdown-item" sec:authorize="isAuthenticated() and hasRole('Utilisateur')"><a href="/emprunts">Mon Panier</a></li>
                                 <li>
                                     <form th:action="@{/logout}" method="post">
                                         <button type="submit" class="dropdown-item">Déconnexion</button>
@@ -109,20 +109,33 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${document.titre}"></h5>
                             <p class="card-text" th:text="${document.typeDocument}"></p>
-                            <a th:href="@{/documents/{id}(id=${document.idDocument})}" class="btn btn-primary">Voir Détails</a>
-                            <!-- Bouton de prêt conditionnel -->
-                            <div sec:authorize="isAuthenticated()">
-                                <a th:href="@{/cart}" class="btn btn-primary">Emprunter</a>
-                                <!-- <button class="btn btn-success mt-2" th:onclick="'addToCart(' + ${document.idDocument} + ')'">
-                                    Emprunter
-                                </button> -->
+
+                            <!-- Conteneur flex pour les boutons -->
+                            <div class="d-flex justify-content-between mt-3">
+                                <!-- Bouton Voir Détails -->
+                                <a th:href="@{/documents/{id}(id=${document.idDocument})}" class="btn btn-primary me-2">Voir Plus</a>
+                                
+                                <!-- Bouton de prêt conditionnel -->
+                                <div sec:authorize="isAuthenticated() and hasRole('Utilisateur')">
+                                    <form th:action="@{/emprunter}" method="post">
+                                        <input type="hidden" name="idDocument" th:value="${document.idDocument}" />
+                                        <button type="submit" class="btn btn-primary">Emprunter</button>
+                                    </form>
+                                </div>
                             </div>
+
+                            <!-- Afficher l'alerte si un message d'erreur est présent -->
+                            <div th:if="${errorMessage}" class="alert alert-danger mt-3" role="alert">
+                                <p th:text="${errorMessage}"></p>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="text-white text-center py-4 bg-dark">

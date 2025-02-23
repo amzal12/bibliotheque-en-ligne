@@ -87,4 +87,10 @@ public class UtilisateurRepository {
                      "WHERE p.idPersonne = ?";
         return jdbcTemplate.queryForObject(sql, new UtilisateurRowMapper(), idPersonne);
     }
+
+    public int getIdUtilisateur(String username) {
+        String sql = "SELECT idPersonne FROM Personne WHERE nomUtilisateur = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, username);
+    }
+    
 }

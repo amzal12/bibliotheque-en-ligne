@@ -1,270 +1,294 @@
-/* styles.css */
-
 /* ----------------------------- Variables ----------------------------- */
 :root {
-    --primary-color: #007bff;
-    --secondary-color: #0056b3;
-    --dark-bg: #343a40;
-    --light-bg: #f8f9fa;
-    --text-dark: #333;
-    --text-light: #fff;
-    --transition: all 0.3s ease;
-  }
-  
-  /* ----------------------------- Global Styles ----------------------------- */
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f4f4;
-    color: var(--text-dark);
-    line-height: 1.6;
-  }
-  
-  h1, h2, h3 {
-    font-weight: 700;
-  }
-  
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: var(--transition);
-  }
-  
-  /* ----------------------------- Navbar Styles ----------------------------- */
-  .navbar {
-    background-color: var(--dark-bg);
-    padding: 0.8rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar-brand img {
-    max-height: 45px;
-    width: auto;
-  }
-  
-  .navbar-toggler {
-    border: none;
-    padding: 0.5rem;
-  }
-  
-  .navbar-toggler:focus {
-    box-shadow: none;
-  }
-  
-  .search-form {
-    flex-grow: 1;
-    max-width: 500px;
-    margin: 0 2rem;
-  }
-  
-  .search-form input {
-    border-radius: 50px;
-    padding: 0.6rem 1.2rem;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-light);
-  }
-  
-  .search-form input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .search-form button {
-    border-radius: 50px;
-    padding: 0.6rem 1.5rem;
-    margin-left: -50px;
-  }
-  
-  .nav-link {
-    color: var(--text-light) !important;
-    padding: 0.5rem 1rem !important;
-  }
-  
-  .nav-link:hover,
-  .nav-link:focus {
-    color: var(--primary-color) !important;
-  }
-  
-  .dropdown-menu {
-    background-color: var(--dark-bg);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .dropdown-item {
-    color: var(--text-light);
-  }
-  
-  .dropdown-item:hover {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-  }
-
-  .nav-link .fa-user {
-    font-size: 1.5rem; /* Taille personnalisée */
-    vertical-align: middle;
-    margin-right: 0.5rem;
+  --primary-color: #dbb82e;
+  --secondary-color: #dbb82e;
+  --dark-bg: #343a40;
+  --light-bg: #f8f9fa;
+  --text-dark: #333;
+  --text-light: #fff;
+  --transition: all 0.3s ease;
 }
-  
-  /* ----------------------------- Hero Section ----------------------------- */
-  .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url('/img/accueil.webp') center/cover;
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+/* ----------------------------- Global Styles ----------------------------- */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+/* ----------------------------- Navbar Styles ----------------------------- */
+.navbar {
+  background-color: var(--dark-bg);
+  padding: 0.8rem 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+  max-height: 45px;
+  width: auto;
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.search-form {
+  flex-grow: 1;
+  max-width: 500px;
+  margin: 0 2rem;
+}
+
+.search-form input {
+  border-radius: 50px;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+}
+
+.search-form input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-form button {
+  border-radius: 50px;
+  padding: 0.6rem 1.5rem;
+  margin-left: -50px;
+}
+
+.nav-link {
+  color: var(--text-light) !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--primary-color) !important;
+}
+
+.dropdown-menu {
+  background-color: var(--dark-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-item {
+  color: var(--text-light);
+}
+
+.dropdown-item:hover {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.nav-link .fa-user {
+  font-size: 1.5rem; /* Taille personnalisée */
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+/* ----------------------------- Hero Section ----------------------------- */
+.hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url('/img/accueil.webp') center/cover;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero .btn-primary {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px #dbb82e;
+}
+
+/* Pour les boutons primaires, garder la couleur dorée dans tous les états */
+.btn-primary {
+  background-color: #dbb82e !important;
+  border-color: #f6f6f1 !important;
+}
+
+/* Effet au survol (hover) et focus */
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #948033 !important;
+  border-color: #f6f6f1 !important;
+  box-shadow: 0 0 0 0.2rem rgba(219, 184, 46, 0.5) !important; /* ombre dorée */
+}
+
+/* État actif, au clic */
+.btn-primary:active {
+  background-color: #dbb82e !important;
+  border-color: #f6f6f1 !important;
+}
+
+/* Pour le focus visible pour éviter la bordure bleue */
+.btn-primary:focus-visible {
+  outline: none !important; /* Supprime le contour bleu par défaut */
+  box-shadow: 0 0 0 0.2rem rgba(219, 184, 46, 0.5) !important; /* Ombre dorée */
+}
+
+
+/* ----------------------------- Features Section ----------------------------- */
+.features {
+  background-color: var(--light-bg);
+  padding: 5rem 0;
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--text-light);
+  font-size: 2rem;
+  transition: var(--transition);
+}
+
+.feature-icon:hover {
+  transform: translateY(-5px);
+  background: var(--secondary-color);
+}
+
+/* ----------------------------- Documents Section ----------------------------- */
+
+.mes-documents {
+  padding: 5rem 0;
+}
+
+.mes-documents .card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: var(--transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mes-documents .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mes-documents .card-img-top {
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.mes-documents .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+
+.mes-documents .btn-primary {
+  align-self: flex-start;
+}
+
+
+/* ----------------------------- Footer Styles ----------------------------- */
+footer {
+  background-color: var(--dark-bg);
+  padding: 3rem 0;
+}
+
+footer a {
+  color: var(--text-light) !important;
+  position: relative;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--text-light);
+  transition: var(--transition);
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+/* ----------------------------- Responsive Styles ----------------------------- */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    padding: 1rem 0;
   }
-  
+
+  .search-form {
+    margin: 1rem 0;
+    max-width: 100%;
+  }
+
   .hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
   }
-  
-  .hero .btn-primary {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-  }
-  
-  /* ----------------------------- Features Section ----------------------------- */
-  .features {
-    background-color: var(--light-bg);
-    padding: 5rem 0;
-  }
-  
+
   .feature-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: var(--text-light);
-    font-size: 2rem;
-    transition: var(--transition);
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
   }
-  
-  .feature-icon:hover {
-    transform: translateY(-5px);
-    background: var(--secondary-color);
-  }
-  
-  /* ----------------------------- Documents Section ----------------------------- */
+}
 
-  .mes-documents {
-    padding: 5rem 0;
-  }
-  
-  .mes-documents .card {
-    border: none;
-    border-radius: 15px;
-    overflow: hidden;
-    transition: var(--transition);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .mes-documents .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-  }
-  
+@media (max-width: 768px) {
   .mes-documents .card-img-top {
-    height: 300px;
-    object-fit: cover;
-    object-position: top;
-  }
-  
-  .mes-documents .card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1.5rem;
-  }
-  
-  .mes-documents .btn-primary {
-    align-self: flex-start;
+    height: 250px;
   }
 
+  .hero {
+    min-height: 50vh;
+  }
 
-  /* ----------------------------- Footer Styles ----------------------------- */
-  footer {
-    background-color: var(--dark-bg);
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    max-height: 35px;
+  }
+
+  .features {
     padding: 3rem 0;
   }
-  
-  footer a {
-    color: var(--text-light) !important;
-    position: relative;
-  }
-  
-  footer a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--text-light);
-    transition: var(--transition);
-  }
-  
-  footer a:hover::after {
-    width: 100%;
-  }
-  
-  /* ----------------------------- Responsive Styles ----------------------------- */
-  @media (max-width: 992px) {
-    .navbar-collapse {
-      padding: 1rem 0;
-    }
-  
-    .search-form {
-      margin: 1rem 0;
-      max-width: 100%;
-    }
-  
-    .hero h1 {
-      font-size: 2.5rem;
-    }
-  
-    .feature-icon {
-      width: 70px;
-      height: 70px;
-      font-size: 1.8rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .mes-documents .card-img-top {
-      height: 250px;
-    }
-  
-    .hero {
-      min-height: 50vh;
-    }
-  
-    .hero h1 {
-      font-size: 2rem;
-    }
-  
-    .hero p {
-      font-size: 1rem;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .navbar-brand img {
-      max-height: 35px;
-    }
-  
-    .features {
-      padding: 3rem 0;
-    }
-  
-  }
 
+}

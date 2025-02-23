@@ -19,7 +19,7 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/public/**", "/css/**",
                 "/img/**", "/js/**", "/privacy", "/contact", "/req/login", "/req/signup", 
-                "cart", "/error","/documents/**").permitAll()  // Autoriser toutes les pages publiques
+                "cart", "/error","/documents/**","/emprunts","/emprunter","/admin/panel").permitAll()  // Autoriser toutes les pages publiques
                 .anyRequest().authenticated() // Toutes les autres pages nécessitent une authentification
             )
             .formLogin(form -> form

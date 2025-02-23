@@ -86,17 +86,14 @@ CREATE TABLE OuvrageMultimedia (
 -- Table Emprunt avec contrainte CHECK sur dateRetour et dateEmprunt
 DROP TABLE IF EXISTS Emprunt;
 CREATE TABLE Emprunt (
-    idEmprunt INT PRIMARY KEY,
-    idUtilisateur INT,  -- Utilise idPersonne pour l'utilisateur (si role = 'Utilisateur')
-    idGestionnaire INT, -- Utilise idPersonne pour le gestionnaire (si role = 'Gestionnaire')
+    idPersonne INT,  
     idDocument INT,
     dateEmprunt DATE,
     dateRetour DATE,
     etat ENUM('emprunté', 'retourné', 'endommagé'),
-    FOREIGN KEY (idDocument) REFERENCES Document(idDocument),
-    FOREIGN KEY (idUtilisateur) REFERENCES Personne(idPersonne), -- Référence à Personne pour l'utilisateur
-    FOREIGN KEY (idGestionnaire) REFERENCES Personne(idPersonne), -- Référence à Personne pour le gestionnaire
-    CHECK (dateRetour >= dateEmprunt) -- Vérification que la date de retour est après la date d'emprunt
+    PRIMARY KEY (idDocument, idPersonne),
+    FOREIGN KEY (idDocument) REFERENCES Documents(idDocument),
+    FOREIGN KEY (idPersonne) REFERENCES Personne(idPersonne),  
 );
 
 -- Table Ecrire
